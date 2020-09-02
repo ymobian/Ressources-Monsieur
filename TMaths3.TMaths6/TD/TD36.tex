@@ -1,0 +1,494 @@
+\documentclass[a4 paper, 10 pt]{book}
+\usepackage[left=1.5cm,right=1.5cm,top=1.5 cm,bottom=0.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[explicit]{titlesec}
+\usepackage{titletoc}
+
+
+\usepackage{eurosym}
+%\usepackage{asymptote}
+\usepackage{xlop}
+\usepackage{tikz}
+%\usepackage{halloweenmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows,%
+                plotmarks}
+\usepackage{tkz-euclide}
+\usepackage{tkz-tab}
+\usepackage{tkz-base,tkz-fct}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes}
+\usepackage{pgf}
+\usepackage{colortbl}
+\usepackage{fancybox}					% boite
+\usepackage{multicol}					% plusieurs colonnes
+\usepackage{multirow}					% multicol dans tableaux
+\usepackage{tabularx}					% trucs ds tableaux
+\usepackage{colortbl}					% couleurs dans tableaux
+\usepackage{slashbox}	
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+\usepackage{customtheorem}
+\usepackage{mathtools}
+\usepackage{epigraph}
+\usepackage{amssymb}
+\usepackage{amsmath,multicol,amssymb}
+\usetikzlibrary{shapes.geometric}
+\usepackage[framemethod=tikz]{mdframed}
+\usetikzlibrary{calc}
+\usepackage{pifont}
+\def\vect{\overrightarrow}
+\usepackage{mathrsfs}
+\usepackage{xpatch}
+\usepackage{lmodern}
+\usepackage{lipsum}
+\usepackage[francais]{babel}
+\usepackage[tikz]{bclogo}
+\newlength\ChapWd
+\settowidth\ChapWd{\huge\chaptertitlename}
+\newcommand*{\N}{\mathbb{N}}
+\newcommand*{\Z}{\mathbb{Z}}
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\pr}{\mathbb{P}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\J}{\text{i}}
+\newcommand{\moy}[1]{\overline{#1}}
+\newcommand*{\R}{\mathbb{R}}
+\usepackage{framed}	
+\newcommand*{\e}{\text{e}}
+%\definecolor{myblue}{RGB}{0,0,122}
+\definecolor{myblue}{RGB}{139,0,0}
+\definecolor{vert2}{RGB}{60,179,113}
+\usepackage{pstricks,pst-plot,pst-text,pst-tree,pst-eps,pst-all,pst-tree,pst-fill,pst-node,pstricks-add,pst-math,pst-blur}
+%\definecolor{vert3}{RGB}{139,0,0}
+%\definecolor{myblue}{RGB}{139,0,0}
+\titleformat{\chapter}[display]
+  {\normalfont\filcenter\sffamily}
+  {\tikz[remember picture,overlay]
+    {
+    \node[fill=myblue,font=\fontsize{60}{72}\selectfont\color{white},anchor=north west,minimum size=\ChapWd] 
+      at ([xshift=30pt,yshift=-30pt]current page.north west) 
+      (numb) {\thechapter};
+    \node[rotate=90,anchor=south,inner sep=0pt,font=\huge,color=myblue] at (numb.west) {\chaptertitlename};
+    }
+  }{0pt}{\fontsize{33}{40}\selectfont\color{myblue}#1}[\vskip10pt\Large***]
+\titlespacing*{\chapter}
+  {0pt}{30pt}{10pt}
+
+
+\makeatletter
+\xpatchcmd{\ttl@printlist}{\endgroup}{{\noindent\color{myblue}\rule{\textwidth}{1.5pt}}\vskip30pt\endgroup}{}{}
+\makeatother
+
+\newcommand\DoPToC{%
+\startcontents[chapters]
+\printcontents[chapters]{}{1}{\noindent{\color{myblue}\rule{\textwidth}{1.5pt}}\par\medskip}%
+}
+
+\setlength\epigraphrule{0pt}
+\renewcommand\textflush{flushright}
+\renewcommand\epigraphsize{\normalsize\itshape}
+
+
+\theoremstyle{standard}% on vide les définitions précédents
+\theorembodyfont{\upshape}% le texte du théorème est en droit
+\theoremheadcolor{blue}% couleur bleu pour les exemples/remarques
+%\newtheorem*{exemple}{Exemple}
+\newtheorem*{remarque}{Remarque}
+%\newtheorem*{exemples}{Exemples}
+\newtheorem*{remarques}{Remarques}
+
+
+
+
+
+\theoremstyle{standard}% on vide les définitions précédents
+\theorembodyfont{\upshape}% le texte du théorème est en droit
+\theoremheadcolor{vert2}% couleur bleu pour les exemples/remarques
+\newtheorem*{exemple}{Exemple}
+%\newtheorem*{remarque}{Remarque}
+\newtheorem*{exemples}{Exemples}
+
+
+
+
+\theoremstyle{standard}% on vide les définitions précédents
+\theorembodyfont{\upshape}% le texte du théorème est en droit
+\theoremheadcolor{purple}% couleur bleu pour les exemples/remarques
+\newtheorem*{demonstration}{Démonstration}
+
+
+
+
+\theoremstyle{standard}% on vide les définitions précédents
+\theorembodyfont{\upshape}% le texte du théorème est en droit
+\theoremheadcolor{black}% couleur bleu pour les exemples/remarques
+\newtheorem{propriete}{Propriété}
+
+
+%\theoremstyle{standard}% on vide les définitions précédents
+%\theorembodyfont{\upshape}% le texte du théorème est en droit
+%\theoremheadcolor{red}% couleur bleu pour les exemples/remarques
+%\newtheorem{exo}{Exercice}
+
+
+
+
+
+
+\def\tikztitlebox#1#2{
+      \tikzstyle{titlebox} = [fill=gray!5, rectangle, inner sep=10pt, inner ysep=10pt]
+      \tikzstyle{title}=[text=black]
+      \bigskip\noindent\begin{tikzpicture}
+      \node[titlebox] (box){#1};
+      \useasboundingbox (box);
+      \draw[color=black,very thick,line width=2.5 pt] (box.north west)--(box.south west);
+      \node[title] at ($(box.north west)+(1.4cm,-0.15cm)$) {#2};
+      \end{tikzpicture}
+}%
+
+\def\newtikzdef#1#2{
+\expandafter\newsavebox\csname temp#1box \endcsname
+\newcounter{#1}
+\setcounter{#1}{0}
+\newenvironment{#1}
+     {\begin{lrbox}{\csname temp#1box \endcsname}\begin{minipage}{0.95\textwidth}}
+     {\end{minipage}\end{lrbox}%
+      \tikztitlebox{\usebox{\csname temp#1box \endcsname}}%
+                   {\refstepcounter{#1}\textbf{#2~\expandafter\csname the#1\endcsname}}
+     }
+}
+
+%\newenvironment{definission}[1][]
+
+
+\newenvironment{definission}[1][]{%
+\begin{Sbox}\begin{minipage}{0.98\linewidth}\begin{defn}[#1]}
+  {\end{defn}\end{minipage}\end{Sbox} \begin{center}\encadreDR{\TheSbox}\end{center}}
+
+
+
+
+
+
+%\newtikzdef{definition}{Définition}
+%\renewcommand{\thedefinition}{\arabic{definition}.}
+
+
+
+\newcommand*{\ds}{\displaystyle}
+
+
+
+\definecolor{bleupastel}{RGB}{218,251,252}
+
+\xdefinecolor{mycolor}{RGB}{62,96,111} % Neutral Blue
+\colorlet{bancolor}{mycolor}
+
+\def\bancolor{mycolor}
+\newenvironment{myboxo}[3][]{%
+    \begin{tikzpicture}[#1]%
+        \def\myboxoname{#3}%
+        \node [draw,inner sep=1.5ex,text width=#2]% good options: minimum height, minimum width
+            (BOXCONTENT) \bgroup\rule{0pt}{3ex}\ignorespaces
+}{%
+        \egroup;
+        \node [right,inner xsep=1em,fill=bancolor!75,outer sep=0pt,text height=2ex,text depth=.5ex] (BOXNAME) 
+            at ([shift={(-1em,0pt)}]BOXCONTENT.north west) {\myboxoname};
+        \fill[bancolor] (BOXNAME.north east) -- +(-1em,1em) -- +(-1em,0) -- cycle;
+        \fill[bancolor] (BOXNAME.south west) -- +(1em,-1em) -- +(1em,0) -- cycle;
+    \end{tikzpicture}
+}
+
+
+
+
+
+\newcommand{\points}[1][5cm]{\makebox[#1][l]{\dotfill}\xspace}
+
+
+
+\def\tikztitleboxi#1#2{
+      \tikzstyle{titlebox} = [fill=red!5, rectangle, inner sep=10pt, inner ysep=10pt]
+      \tikzstyle{title}=[text=red,above,rotate=90]
+      \bigskip\noindent\begin{tikzpicture}
+      \node[titlebox] (box){#1};
+      \useasboundingbox (box);
+      \draw[color=red,very thick,line width=2.5 pt] (box.north west)--(box.south west);
+      \node[title] at (box.west) {#2};
+      \end{tikzpicture}
+}%
+
+
+\def\newtikztheorem#1#2{
+\expandafter\newsavebox\csname temp#1box \endcsname
+\newcounter{#1}
+\setcounter{#1}{0}
+\newenvironment{#1}
+     {\begin{lrbox}{\csname temp#1box \endcsname}\begin{minipage}{0.95\textwidth}}
+     {\end{minipage}\end{lrbox}%
+      \tikztitleboxi{\usebox{\csname temp#1box \endcsname}}%
+                   {\refstepcounter{#1}\textbf{#2~\expandafter\csname the#1\endcsname}}
+     }
+}
+
+
+
+
+%\newtikztheorem{theoreme}{Théorème}
+
+\newtikztheorem{exo}{Ex.}
+\newtikztheorem{theoreme}{Théorème}
+
+\newcommand{\myunit}{1 cm}
+\tikzset{
+    node style sp/.style={draw,circle,minimum size=\myunit},
+    node style ge/.style={circle,minimum size=\myunit},
+    arrow style mul/.style={draw,sloped,midway,fill=white},
+    arrow style plus/.style={midway,sloped,fill=white},
+}
+
+
+
+\def\att{
+\begin{tikzpicture}[scale=0.6]
+\draw[fill=red,rounded corners=1.5pt] (0,0) -- (1,0) -- (0.5,1) -- cycle ;
+\draw[fill=white,rounded corners=2pt] (0.13,0.08) -- (0.87,0.08) -- (0.5,0.8) -- cycle ;
+\draw[fill=black,rounded corners=1pt] (0.5,0.3) -- (0.55,0.6) -- (0.45,0.6) -- cycle ;
+\fill (0.5,0.2) circle(0.04) ;
+\draw (1.2,0) ;
+\end{tikzpicture}}
+
+
+
+
+\theoremstyle{standard}
+\theorembodyfont{\upshape}
+\theoremheadcolor{black}
+\newtheorem{thmm}{Définition}
+%\newcounter{#1}
+%\setcounter{#1}{0}
+
+\newenvironment{definition}
+{\begin{mdframed}[backgroundcolor = gray!5,
+hidealllines=true,
+leftline=true,
+innerleftmargin=10pt,
+innerrightmargin=10pt,
+innertopmargin=3 pt\baselineskip,
+innerbottommargin=0.5\baselineskip,
+linewidth=3pt,linecolor=gray] 
+\begin{thmm}}
+{\end{thmm}\end{mdframed}}
+
+\include{pythonlisting}
+
+\newenvironment{remark}{\par\vspace{10pt}\small % Vertical white space above the remark and smaller font size
+\begin{list}{}{
+\leftmargin=0pt % Indentation on the left
+\rightmargin=5pt}\item\ignorespaces % Indentation on the right
+\makebox[-.5pt]{\begin{tikzpicture}[overlay]
+\node[draw=vert2!60,line width=1pt,circle,fill=vert2!5,font= \bfseries,inner sep=2pt,outer sep=0pt] at (-10pt,5pt){\textcolor{vert2}{R}};\end{tikzpicture}} % Orange R in a circle
+\advance\baselineskip 5pt}{\end{list}\vskip5pt} 
+
+
+
+
+\usepackage{fancyhdr}
+
+
+
+\fancyhf{}
+\lhead[{\color{myblue} \thepage}]{{\color{myblue} \rightmark}}
+\rhead{\textbf{TMaths3/TMaths6}}
+\chead{\textbf{TD semaine 36}}
+
+\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\headrule}{\color{myblue}\rule{\textwidth}{0.4pt}}
+%\renewcommand{\footrule}{{\color{green}\rule{\textwidth}{1pt}}}
+
+
+\pagestyle{fancy}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newcounter{numeroexo}
+ \newenvironment{exe}{\par\refstepcounter{numeroexo}\vskip 0.2 cm\hspace*{0.75cm}\begin{tikzpicture}[overlay]
+\node[draw=gray!60,line width=1pt,circle,fill=gray!15,font= \bfseries,inner sep=4pt,outer sep=2 pt] at (-29pt,5pt){\arabic{numeroexo}};
+
+
+
+
+%\node[line width=1 pt,fill=black!5,font= \bfseries,inner sep=2pt,outer sep=0pt] at (-50pt,5pt){\textcolor{black}{\rotatebox{90}{Ex.}}};
+
+
+\end{tikzpicture}} % Orange R in a circle
+
+
+
+
+
+
+
+
+
+
+\setlength{\columnsep}{1.5cm}
+
+
+\begin{document}
+
+
+
+
+\begin{multicols}{2}
+
+\begin{exe} \colorbox{yellow}{\textbf{Python}}
+\vskip 0.2 cm
+\noindent \textit{Les deux parties sont indépendantes.}
+\begin{center}
+\textbf{Partie A}
+\end{center}
+On considère la suite $(v_n)$ définie sur $\N$ par : 
+\begin{center}
+$v_0=1$ et $v_{n+1}=\dfrac{3}{4}v_n$.
+\end{center}
+\begin{enumerate}
+\item Préciser la nature de la suite $(v_n)$ et ses éléments caractéristiques.
+\item Donner, pour tout entier naturel $n$, l'expression de $v_n$ en fonction de $n$.
+\item \'Etudier le sens de variation de la suite $(v_n)$.
+\item Calculer la somme $\mathscr{S}$ des $n$ premiers termes de la suite $(v_n)$.
+\end{enumerate}
+\begin{center}
+\textbf{Partie B}
+\end{center}
+On modélise une suite $(w_n)$ à l'aide de la fonction suivante écrite en langage Python : 
+\begin{python}
+def terme(n):
+    w=4
+    for i in range(n) :
+        w=2*w-3
+    return w
+\end{python}
+\begin{enumerate}
+\item Que renvoie l'exécution de terme(5)?
+\item En vous inspirant de la fonction $\text{terme}(n)$, proposer une fonction $\text{somme}\_\text{termes}(n)$, écrite en langage Python, qui renvoie la somme des $n$ premiers termes de la suite $(w_n)$.
+%\item Contrôler ce résultat avec repl.it.
+\end{enumerate}
+
+\end{exe}
+
+\vskip 0.2 cm
+\begin{exe}\colorbox{yellow}{\textbf{Python}}
+\vskip 0.2 cm
+\noindent 
+En 1995, le taux de scolarisation des jeunes de 18 ans atteignait 84,8\%, du fait d'une forte progression de la poursuite d'études dans le second cycle général et technologique jusqu'au baccalauréat.
+Une étude de l'INSEE montre que ce taux de scolarisation a régulièrement diminué au cours des dix années suivantes.On considère que la diminution du taux de scolarisation à 18 ans est chaque année de 1\% à partir de 1995.~Pour tout entier naturel $n$, on modélise le taux de scolarisation des jeunes de 18 ans en $1995+n$, par une suite $(u_n)$); ainsi $u_0=84,8$.
+\begin{enumerate}
+\item Quel est le taux de scolarisation des jeunes âgés de 18 ans en 1996?
+\item Déterminer, en justifiant, la nature de la suite $(u_n)$.
+\item On donne le programme suivant en langage Python :
+\begin{python}
+u=84.8
+n=0
+while u>80:
+   	u=0.99*u
+   	n=n+1
+\end{python}
+\begin{enumerate}
+\item Déterminer la valeur numérique que contient la variable $n$ à l'issue de l'exécution du programme.
+\item Interpréter cette valeur dans le contexte de l'énoncé.
+\end{enumerate}
+\item Exprimer, pour tout entier naturel $n$,~$(u_n)$ en fonction de $n$.
+\item Quel sera le taux de scolarisation des jeunes de 18 ans en 2021 selon ce modèle?~Arrondir le résultat au dixième.
+\end{enumerate}
+\end{exe}
+\vskip 0.2 cm
+\begin{exe}\colorbox{yellow}{\textbf{Tableur}}
+\vskip 0.2 cm
+Soit $u$ la suite définie par $u_0 = 2$ et, pour tout entier naturel $n$, par 
+
+\[u_{n+1} = 2u_n +2n^2 - n.\]
+
+On considère également la suite $v$ définie, pour tout entier naturel $n$, par
+\[v_n = u_n + 2n^2 + 3n + 5.\]
+
+\begin{enumerate}
+\item Voici un extrait de feuille de tableur :
+
+\begin{center}
+\begin{tabularx}{0.65\linewidth}{|c| *{3}{>{\centering \arraybackslash}X|}}\hline
+	&A	&B	&C\\ \hline
+1	&$n$&$u$&$v$\\ \hline
+2	&0	&2	&7\\ \hline
+3	&1	&4	&14\\ \hline
+4	&2	&9	&28\\ \hline
+5	&3	&24	&56\\ \hline
+6	&4	&63	&\\ \hline
+7	&	&	&\\ \hline
+8	&	&	&\\ \hline
+9	&	&	&\\ \hline
+10	&	&	&\\ \hline
+\end{tabularx}
+\end{center}
+
+Quelles formules a-t-on écrites dans les cellules C2 et B3 et copiées vers le bas pour
+afficher les termes des suites $u$ et $v$ ?
+\item Déterminer, en justifiant, une expression de $v_n$ et de $u_n$ en fonction de $n$ uniquement.
+\end{enumerate}
+\end{exe}
+
+
+
+
+
+
+
+
+
+\vskip 0.2 cm
+\begin{exe} \colorbox{yellow}{\textbf{Liste et Python}}
+\vskip 0.2 cm
+On considère le programme suivant écrit en Python : 
+
+\begin{python}
+def liste(N):
+  U=1
+  L=[1]
+  for i in range(1,N):
+    U=2*U+3
+    L.append(U)
+  return L
+ 
+\end{python}
+
+\begin{enumerate}
+\item Que contient la variable $L$ à la fin de l'exécution dans le cas où on choisit $N=4$?~Justifier.
+\item Soit la suite $(u_n)$ définie sur $\N$ par $u_0=1$ et $u_{n+1}=2u_n+3$ et  la suite $(v_n)$ définie sur $\N$ par $v_n=u_n+3$.
+\begin{enumerate}
+\item Démontrer que la suite $(v_n)$ est une suite géométrique.~Préciser sa raison et son premier terme.
+\item Exprimer pour tout entier naturel $n$,~$v_n$ en fonction de $n$.
+\item Déterminer l'expression de $S_n=\displaystyle\sum_{k=0}^{n}v_k$.
+\item En déduire l'expression de $S'n=\displaystyle\sum_{k=0}^{n}u_k$.
+\end{enumerate}
+\end{enumerate}
+\end{exe}
+
+
+
+
+\end{multicols}
+\end{document}
+
